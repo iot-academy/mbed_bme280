@@ -1,3 +1,17 @@
+/**
+ *  BME280 Combined humidity and pressure sensor library
+ *
+ *  @author  Toyomasa Watarai
+ *  @version 1.0
+ *  @date    06-April-2015
+ *
+ *  Library for "BME280 temperature, humidity and pressure sensor module" from Switch Science
+ *    https://www.switch-science.com/catalog/2236/
+ *
+ *  For more information about the BME280:
+ *    http://ae-bst.resource.bosch.com/media/products/dokumente/bme280/BST-BME280_DS001-09.pdf
+ */
+ 
 #ifndef MBED_BME280_H
 #define MBED_BME280_H
 
