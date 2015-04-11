@@ -85,14 +85,17 @@ void BME280::initialize()
  
     cmd[0] = 0xA1; // read dig_H regs
     i2c.write(address, cmd, 1);
-    i2c.read(address, cmd, 9);
- 
+    i2c.read(address, cmd, 1);
+     cmd[1] = 0xE1; // read dig_H regs
+    i2c.write(address, &cmd[1], 1);
+    i2c.read(address, &cmd[1], 7);
+
     dig_H1 = cmd[0];
     dig_H2 = (cmd[2] << 8) | cmd[1];
     dig_H3 = cmd[3];
     dig_H4 = (cmd[4] << 4) | (cmd[5] & 0x0f);
-    dig_H5 = (cmd[7] << 4) | ((cmd[6]>>4) & 0x0f);
-    dig_H6 = cmd[8];
+    dig_H5 = (cmd[6] << 4) | ((cmd[5]>>4) & 0x0f);
+    dig_H6 = cmd[7];
  
     DEBUG_PRINT("dig_H = 0x%x, 0x%x, 0x%x, 0x%x, 0x%x, 0x%x\n", dig_H1, dig_H2, dig_H3, dig_H4, dig_H5, dig_H6);
 }
