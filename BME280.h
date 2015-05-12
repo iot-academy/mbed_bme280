@@ -9,7 +9,7 @@
  *    https://www.switch-science.com/catalog/2236/
  *
  *  For more information about the BME280:
- *    http://ae-bst.resource.bosch.com/media/products/dokumente/bme280/BST-BME280_DS001-09.pdf
+ *    http://ae-bst.resource.bosch.com/media/products/dokumente/bme280/BST-BME280_DS001-10.pdf
  */
  
 #ifndef MBED_BME280_H

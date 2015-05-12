@@ -9,7 +9,7 @@
  *    https://www.switch-science.com/catalog/2236/
  *
  *  For more information about the BME280:
- *    http://ae-bst.resource.bosch.com/media/products/dokumente/bme280/BST-BME280_DS001-09.pdf
+ *    http://ae-bst.resource.bosch.com/media/products/dokumente/bme280/BST-BME280_DS001-10.pdf
  */
 
 #include "mbed.h"
@@ -110,14 +110,6 @@ float BME280::getTemperature()
     i2c.write(address, cmd, 1);
     i2c.read(address, &cmd[1], 3);
  
-    //cmd[0] = 0xfb; // temp_lsb
-    //i2c.write(address, cmd, 1);
-    //i2c.read(address, &cmd[2], 1);
- 
-    //cmd[0] = 0xfc; // temp_xlsb
-    //i2c.write(address, cmd, 1);
-    //i2c.read(address, &cmd[3], 1);
- 
     temp_raw = (cmd[1] << 12) | (cmd[2] << 4) | (cmd[3] >> 4);
  
     int32_t temp;
@@ -142,14 +134,6 @@ float BME280::getPressure()
     cmd[0] = 0xf7; // press_msb
     i2c.write(address, cmd, 1);
     i2c.read(address, &cmd[1], 3);
- 
-    //cmd[0] = 0xf8; // press_lsb
-    //i2c.write(address, cmd, 1);
-    //i2c.read(address, &cmd[2], 1);
- 
-    //cmd[0] = 0xf9; // press_xlsb
-    //i2c.write(address, cmd, 1);
-    //i2c.read(address, &cmd[3], 1);
  
     press_raw = (cmd[1] << 12) | (cmd[2] << 4) | (cmd[3] >> 4);
  
@@ -188,10 +172,6 @@ float BME280::getHumidity()
     cmd[0] = 0xfd; // hum_msb
     i2c.write(address, cmd, 1);
     i2c.read(address, &cmd[1], 2);
- 
-    //cmd[0] = 0xfe; // hum_lsb
-    //i2c.write(address, cmd, 1);
-    //i2c.read(address, &cmd[2], 1);
  
     hum_raw = (cmd[1] << 8) | cmd[2];
  
