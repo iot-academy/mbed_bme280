@@ -1,10 +1,33 @@
 /**
- *  BME280 Combined humidity and pressure sensor library
+ ******************************************************************************
+ * @file    BME280.h
+ * @author  Toyomasa Watarai
+ * @version V1.0.0
+ * @date    11 March 2017
+ * @brief   This file contains the class of a BME280 Combined humidity and pressure sensor library with I2C interface
+ ******************************************************************************
+ * @attention
  *
- *  @author  Toyomasa Watarai
- *  @version 1.0
- *  @date    06-April-2015
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+ 
+/**
  *  Library for "BME280 temperature, humidity and pressure sensor module" from Switch Science
  *    https://www.switch-science.com/catalog/2236/
  *
@@ -17,7 +40,6 @@
 
 #include "mbed.h"
 
-//#define _DEBUG
 #define DEFAULT_SLAVE_ADDRESS (0x76 << 1)
 
 #ifdef _DEBUG
@@ -27,15 +49,36 @@ extern Serial pc;
 #define DEBUG_PRINT(...)
 #endif
 
- 
+/**  Interface for controlling BME280 Combined humidity and pressure sensor
+ *
+ * @code
+ * #include "mbed.h"
+ * #include "BME280.h"
+ * 
+ * Serial pc(USBTX, USBRX);
+ * 
+ * #if defined(TARGET_LPC1768)
+ * BME280 sensor(p28, p27);
+ * #else
+ * BME280 sensor(I2C_SDA, I2C_SCL);
+ * #endif
+ * 
+ * int main() {
+ *     
+ *     while(1) {
+ *         pc.printf("%2.2f degC, %04.2f hPa, %2.2f %%\n", sensor.getTemperature(), sensor.getPressure(), sensor.getHumidity());
+ *         wait(1);
+ *     }
+ * }
+ * 
+ * @endcode
+ */
+
 /** BME280 class
  *
- *  BME280: A library to correct environmental data using Boshe BME280 device
+ *  BME280: A library to correct environmental data using Boshe BME280 environmental sensor device
  *
- *  BME280 is an environmental sensor
- *  @endcode
- */
- 
+ */ 
 class BME280
 {
 public:
